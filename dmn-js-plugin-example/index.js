@@ -1,6 +1,6 @@
 'use strict';
 
 module.exports = {
-  name: 'bpmn-js Plugin Example',
+  name: 'dmn-js Plugin Example',
   script: './client/client.bundle.js'
 };

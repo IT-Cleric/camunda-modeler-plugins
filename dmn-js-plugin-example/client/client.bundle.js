@@ -86,6 +86,40 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./client/LoggingPlugin.js":
+/*!*********************************!*\
+  !*** ./client/LoggingPlugin.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+class LoggingPlugin {
+
+  // `eventBus` will be injected through dependency injection
+  constructor(eventBus) {
+    eventBus.on('shape.added', (context) => {
+      
+      // Inspect `context` to see all the information that is provided in the context of this event
+      console.log('A shape was added to the diagram!', context);
+    });
+  }
+}
+
+// Use `$inject` to specify what modules should be injected
+LoggingPlugin.$inject = [ 'eventBus' ];
+
+// Specify the module using a unique name
+// Use __init__ to make sure an instance will be created
+/* harmony default export */ __webpack_exports__["default"] = ({
+  __init__: [ 'loggingPlugin' ],
+  loggingPlugin: [ 'type', LoggingPlugin ]
+});
+
+
+/***/ }),
+
 /***/ "./client/client.js":
 /*!**************************!*\
   !*** ./client/client.js ***!
@@ -96,13 +130,13 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var camunda_modeler_plugin_helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! camunda-modeler-plugin-helpers */ "./node_modules/camunda-modeler-plugin-helpers/index.js");
-/* harmony import */ var _resources_qa_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../resources/qa.json */ "./resources/qa.json");
-var _resources_qa_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../resources/qa.json */ "./resources/qa.json", 1);
+/* harmony import */ var _LoggingPlugin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LoggingPlugin */ "./client/LoggingPlugin.js");
 
 
 
 
-Object(camunda_modeler_plugin_helpers__WEBPACK_IMPORTED_MODULE_0__["registerBpmnJSModdleExtension"])(_resources_qa_json__WEBPACK_IMPORTED_MODULE_1__);
+// Register a plugin for dmn-js' DRD modeler
+Object(camunda_modeler_plugin_helpers__WEBPACK_IMPORTED_MODULE_0__["registerDmnJSPlugin"])(_LoggingPlugin__WEBPACK_IMPORTED_MODULE_1__["default"], [ 'drd' ]);
 
 /***/ }),
 
@@ -377,17 +411,6 @@ function getModelerDirectory() {
 function getPluginsDirectory() {
   return window.getPluginsDirectory();
 }
-
-/***/ }),
-
-/***/ "./resources/qa.json":
-/*!***************************!*\
-  !*** ./resources/qa.json ***!
-  \***************************/
-/*! exports provided: name, uri, prefix, xml, types, emumerations, associations, default */
-/***/ (function(module) {
-
-module.exports = JSON.parse("{\"name\":\"QualityAssurance\",\"uri\":\"http://some-company/schema/bpmn/qa\",\"prefix\":\"qa\",\"xml\":{\"tagAlias\":\"lowerCase\"},\"types\":[{\"name\":\"AnalyzedNode\",\"extends\":[\"bpmn:FlowNode\"],\"properties\":[{\"name\":\"suitable\",\"isAttr\":true,\"type\":\"Float\"}]},{\"name\":\"AnalysisDetails\",\"superClass\":[\"Element\"],\"properties\":[{\"name\":\"lastChecked\",\"isAttr\":true,\"type\":\"String\"},{\"name\":\"nextCheck\",\"isAttr\":true,\"type\":\"String\"},{\"name\":\"comments\",\"isMany\":true,\"type\":\"Comment\"}]},{\"name\":\"Comment\",\"properties\":[{\"name\":\"author\",\"isAttr\":true,\"type\":\"String\"},{\"name\":\"text\",\"isBody\":true,\"type\":\"String\"}]}],\"emumerations\":[],\"associations\":[]}");
 
 /***/ })
 

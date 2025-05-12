@@ -1,7 +1,7 @@
 {
-  "name": "bpmn-js-moddle-extension-plugin-example",
+  "name": "camunda-modeler-dmn-js-plugin-example",
   "version": "0.1.0",
-  "description": "bpmn-js Moddle Extension Plugin Example for the Camunda Modeler",
+  "description": "dmn-js Plugin Example for the Camunda Modeler",
   "main": "index.js",
   "scripts": {
     "bundle": "webpack",
@@ -24,7 +24,7 @@
   "homepage": "https://github.com/camunda/camunda-modeler-plugins#readme",
   "devDependencies": {
     "camunda-modeler-plugin-helpers": "^5.0.0",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11"
+    "webpack": "^5.76.0",
+    "webpack-cli": "^5.0.1"
   }
 }

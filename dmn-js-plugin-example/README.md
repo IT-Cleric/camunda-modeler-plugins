@@ -1,8 +1,8 @@
-# Camunda Modeler bpmn-js Plugin Example
+# Camunda Modeler dmn-js Plugin Example
 
-[![Compatible with Camunda Modeler version 2.2+](https://img.shields.io/badge/Modeler_Version-2.2+-blue.svg)](#) [![Plugin Type](https://img.shields.io/badge/Plugin_Type-BPMN-orange.svg)](#)
+[![Compatible with Camunda Modeler version 2.2+](https://img.shields.io/badge/Modeler_Version-2.2+-blue.svg)](#) [![Plugin Type](https://img.shields.io/badge/Plugin_Type-DMN-orange.svg)](#)
 
-Use this example as a starting point if you want to extend bpmn-js with your own module.
+Use this example as a starting point if you want to extend dmn-js with your own module.
 
 First, let's create a new module. In this case we're creating a simple module that will listen for an event and log it to the console:
 
@@ -32,17 +32,17 @@ export default {
 };
 ```
 
-Next, we have to register our module as a plugin for bpmn-js:
+Next, we have to register our module as a plugin for dmn-js, specifically its DRD modeler:
 
 ```javascript
 // See `client/client.js`
 
-import { registerBpmnJSPlugin } from 'camunda-modeler-plugin-helpers';
+import { registerDmnJSPlugin } from 'camunda-modeler-plugin-helpers';
 
 import LoggingPlugin from './LoggingPlugin';
 
-// Register a plugin for bpmn-js
-registerBpmnJSPlugin(LoggingPlugin);
+// Register a plugin for dmn-js' DRD modeler
+registerDmnJSPlugin(LoggingPlugin, [ 'drd' ]);
 ```
 
 Finally, we need to bundle our plugin so it can be executed in the Camunda Modeler:
